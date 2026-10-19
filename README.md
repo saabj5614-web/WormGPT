@@ -2,7 +2,7 @@
 
 ---
 
-**WormGPT interface**
+**Nobita AI interface**
 
 ```
 ░██       ░██                                       ░██████  ░█████████  ░██████████
