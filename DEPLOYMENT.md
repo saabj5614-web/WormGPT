@@ -17,7 +17,7 @@ Vercel does not run or store the 5+ GB model. A Vercel domain also does not keep
 2. In Vercel → Project Settings → Environment Variables, add:
    - `PANEL_BACKEND_URL` = the public **HTTPS base URL** for the Pterodactyl Flask app, without a trailing slash or API path (example format: `https://your-backend.example.com`).
 3. Keep the project root as the repository root. The included `vercel.json` runs `npm run build`, which copies the existing UI to `public/index.html` and injects the backend URL.
-4. Deploy. The build deliberately stops with a clear error if `PANEL_BACKEND_URL` is missing.
+4. Deploy. If `PANEL_BACKEND_URL` is missing, the website can still deploy, but its AI/API calls will not work until you add the backend URL and redeploy.
 5. After the first successful deployment, Vercel provides a `*.vercel.app` address. Set that exact origin as `VERCEL_ORIGIN` on the Pterodactyl backend, then restart the backend.
 
 The backend URL must already be reachable over HTTPS for browser API calls to work. A panel's private/internal address is not enough.
