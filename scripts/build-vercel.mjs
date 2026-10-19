@@ -4,7 +4,8 @@ import path from "node:path";
 const root = process.cwd();
 const templatePath = path.join(root, "chatbot", "templates", "index.html");
 const outputDir = path.join(root, "public");
-const backendUrl = (process.env.PANEL_BACKEND_URL || "").trim().replace(/\\/+$/, "");
+let backendUrl = (process.env.PANEL_BACKEND_URL || "").trim();
+while (backendUrl.endsWith("/")) backendUrl = backendUrl.slice(0, -1);
 
 if (!backendUrl) {
   console.error("Missing PANEL_BACKEND_URL. Set it in Vercel Project Settings → Environment Variables.");
