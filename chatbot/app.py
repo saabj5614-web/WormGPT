@@ -304,7 +304,7 @@ def list_models():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT") or os.environ.get("SERVER_PORT") or os.environ.get("WEB_PORT") or load_config().get("web_port", 5000))
     backend = get_backend()
-    print(f"\n[CamChat] Backend: {backend}")
-    print(f"[CamChat] Web interface: http://localhost:{port}")
-    print(f"[CamChat] System prompt: {PROMPT_FILE}\n")
+    print(f"\n[Nobita AI] Backend: {backend}")
+    print(f"[Nobita AI] Web interface: http://localhost:{port}")
+    print(f"[Nobita AI] System prompt: {PROMPT_FILE}\n")
     app.run(host="0.0.0.0", port=port, debug=False)
