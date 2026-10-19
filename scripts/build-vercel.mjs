@@ -7,13 +7,12 @@ const outputDir = path.join(root, "public");
 let backendUrl = (process.env.PANEL_BACKEND_URL || "").trim();
 while (backendUrl.endsWith("/")) backendUrl = backendUrl.slice(0, -1);
 
-if (!backendUrl) {
-  console.error("Missing PANEL_BACKEND_URL. Set it in Vercel Project Settings → Environment Variables.");
-  process.exit(1);
-}
-if (!/^https:\/\//i.test(backendUrl)) {
+if (backendUrl && !/^https:\/\//i.test(backendUrl)) {
   console.error("PANEL_BACKEND_URL must be an HTTPS URL for a public deployment.");
   process.exit(1);
+}
+if (!backendUrl) {
+  console.warn("PANEL_BACKEND_URL is not set. The website will deploy, but AI/API calls will not work until you set it and redeploy.");
 }
 
 let html = fs.readFileSync(templatePath, "utf8");
