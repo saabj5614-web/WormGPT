@@ -3,10 +3,23 @@ import time
 import json
 import datetime
 import platform
+import hmac
 from flask import Flask, render_template, request, jsonify, Response
 import requests as http_requests
 
 app = Flask(__name__)
+
+# Allow the configured Vercel frontend to call this Pterodactyl backend.
+@app.after_request
+def apply_cors_headers(response):
+    allowed_origin = os.environ.get("VERCEL_ORIGIN", "").rstrip("/")
+    request_origin = request.headers.get("Origin", "").rstrip("/")
+    if allowed_origin and request_origin == allowed_origin:
+        response.headers["Access-Control-Allow-Origin"] = allowed_origin
+        response.headers["Vary"] = "Origin"
+        response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
+        response.headers["Access-Control-Allow-Headers"] = "Content-Type, X-Admin-Token"
+    return response
 
 SCRIPT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROMPT_FILE = os.path.join(SCRIPT_DIR, "system_prompt.txt")
@@ -201,7 +214,13 @@ def prompt_editor():
     if request.method == "GET":
         return jsonify({"prompt": load_system_prompt()})
     elif request.method == "POST":
-        data = request.json
+        expected_token = os.environ.get("ADMIN_TOKEN", "")
+        supplied_token = request.headers.get("X-Admin-Token", "")
+        if not expected_token:
+            return jsonify({"error": "Prompt editing is disabled until ADMIN_TOKEN is configured."}), 503
+        if not hmac.compare_digest(supplied_token, expected_token):
+            return jsonify({"error": "Unauthorized"}), 401
+        data = request.get_json(silent=True) or {}
         new_prompt = data.get("prompt", "")
         if new_prompt.strip():
             with open(PROMPT_FILE, "w", encoding="utf-8") as f:
