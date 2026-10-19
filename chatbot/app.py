@@ -302,7 +302,7 @@ def list_models():
     return jsonify({"models": ["camchat"], "current": "camchat"})
 
 if __name__ == "__main__":
-    port = int(os.environ.get("WEB_PORT", load_config().get("web_port", 5000)))
+    port = int(os.environ.get("PORT") or os.environ.get("SERVER_PORT") or os.environ.get("WEB_PORT") or load_config().get("web_port", 5000))
     backend = get_backend()
     print(f"\n[CamChat] Backend: {backend}")
     print(f"[CamChat] Web interface: http://localhost:{port}")
