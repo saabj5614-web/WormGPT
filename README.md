@@ -184,3 +184,8 @@ MIT
 *Maintained by [Nobita 302](https://github.com/saabj5614-web/WormGPT) · Developer: @nobita_804_302
 
 Original upstream project attribution is retained in the MIT license and source history.
+
+
+## Deployment
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for the Vercel frontend + Pterodactyl AI backend setup, required environment variables, private GitHub repository access, and known limitations.
