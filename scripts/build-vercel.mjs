@@ -25,4 +25,4 @@ html = html.replace(placeholder, `const API_BASE = ${JSON.stringify(backendUrl)}
 
 fs.mkdirSync(outputDir, { recursive: true });
 fs.writeFileSync(path.join(outputDir, "index.html"), html, "utf8");
-console.log("Vercel frontend built. Backend URL is configured.");
+console.log("Vercel frontend build complete.");
