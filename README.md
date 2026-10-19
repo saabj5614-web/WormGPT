@@ -17,7 +17,7 @@
                                                                                     
 ```
 
-**Self-hosted uncensored Local AI Chatbot by camzzz**
+**Self-hosted local AI chatbot, maintained by Nobita 302 (@nobita_804_302).**
 
 100% local inference — no data sent anywhere. Runs on Windows, Linux, macOS, and Termux (Android).
 
@@ -51,8 +51,8 @@
 
 ```powershell
 # 1. Clone the repository
-git clone https://github.com/cameleonnbss/WormGPT-with-an-interface.git
-cd WormGPT-with-an-interface
+git clone https://github.com/saabj5614-web/WormGPT.git
+cd WormGPT
 
 # 2. Run the installer
 .\install.bat
@@ -65,8 +65,8 @@ cd WormGPT-with-an-interface
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/cameleonnbss/WormGPT-with-an-interface.git
-cd WormGPT-with-an-interface
+git clone https://github.com/saabj5614-web/WormGPT.git
+cd WormGPT
 
 # 2. Make scripts executable
 chmod +x install.sh start.sh
@@ -88,8 +88,8 @@ pkg update && pkg upgrade -y
 pkg install -y git python clang cmake make libomp
 
 # 3. Clone the repository
-git clone https://github.com/cameleonnbss/WormGPT-with-an-interface.git
-cd WormGPT-with-an-interface
+git clone https://github.com/saabj5614-web/WormGPT.git
+cd WormGPT
 
 # 4. Make scripts executable
 chmod +x install.sh start.sh
@@ -181,5 +181,6 @@ MIT
 
 ---
 
-*Built by [camzzz](https://github.com/cameleonnbss)*
-discord: cameleonmortis_new
+*Maintained by [Nobita 302](https://github.com/saabj5614-web/WormGPT) · Developer: @nobita_804_302
+
+Original upstream project attribution is retained in the MIT license and source history.
